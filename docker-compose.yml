@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  auth:
+    build: ./auth
+    volumes:
+      - .:/auth
+    ports:
+      - '3000:3000'
+    depends_on:
+      - auth_db
+    environment:
+      DATABASE_URL: postgresql://prisma:prisma@auth_db:5432/prisma
+    command: sh -c "npx prisma migrate deploy && nodemon ./bin/start.js"
+  auth_db:
+    image: postgres:13
+    restart: always
+    ports:
+      - '5431:5432'
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: prisma
