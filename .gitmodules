@@ -6,3 +6,6 @@
 	path = user
 	url = https://github.com/MkDierz/user.git
   branch = master
+[submodule "post"]
+	path = post
+	url = https://github.com/MkDierz/post.git
