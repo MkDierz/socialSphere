@@ -1,21 +1,65 @@
 version: '3.8'
 services:
+
+  server:
+    build: ./server
+    ports:
+      - 80:80
+    restart: always
+
   auth:
     build: ./auth
-    volumes:
-      - .:/auth
-    ports:
-      - '3000:3000'
     depends_on:
       - auth_db
     environment:
       DATABASE_URL: postgresql://prisma:prisma@auth_db:5432/prisma
+      TOKEN_AGE: 2h
+      REFRESH_TOKEN_AGE: 4h
     command: sh -c "npx prisma migrate deploy && nodemon ./bin/start.js"
+
+  user:
+    build: ./user
+    depends_on:
+      - user_db
+    environment:
+      DATABASE_URL: postgresql://prisma:prisma@user_db:5432/prisma
+      BASE_URL: http://server/api
+    command: sh -c "npx prisma db push && node ./bin/start.js"
+
+  post:
+    build: ./post
+    depends_on:
+      - post_db
+    environment:
+      DATABASE_URL: postgresql://prisma:prisma@post_db:5432/prisma
+      BASE_URL: http://server/api
+    command: sh -c "npx prisma db push && node ./bin/start.js"
+
   auth_db:
     image: postgres:13
     restart: always
     ports:
-      - '5431:5432'
+      - '5000:5432'
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: prisma
+
+  user_db:
+    image: postgres:13
+    restart: always
+    ports:
+      - '5001:5432'
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: prisma
+
+  post_db:
+    image: postgres:13
+    restart: always
+    ports:
+      - '5002:5432'
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
