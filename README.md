@@ -9,11 +9,8 @@ SocialSphere services are dockerized, meaning each service has its own Dockerfil
 1. **Authentication Service**: Manages user authentication processes such as user registration, login, token verification, password recovery, and logout.
 2. **User Service**: Manages user profiles including bio, username, full name, cover image, and friend list. Users can view their own profile or those of their friends. Also handles friend requests.
 3. **Post Service**: Handles all operations related to posts such as creating, editing, viewing, deleting, and searching. Each post maintains a "last interaction date," which updates when someone interacts with the post (via the Interaction Service).
-4. **Interaction Service**: Manages interactions with a post or a comment, including creating, viewing, deleting, and managing likes and comments. This service also provides a list of posts that a user has liked.
-5. **Tag Service**: Manages all operations related to tags associated with a post, including creating, editing, viewing, and deleting them.
-6. **User Analytics Service**: Records and displays user-specific analytics. This includes logging user login information such as IP, device, and time, and recording search analytics.
-7. **Post Analytics Service**: Records and displays analytics related to post interactions, including data on post views, likes, and comments.
-8. **Home Feed Service**: Aggregates posts from a user's friends and any posts where their friends have interacted, sorted by the "last interaction date."
+4. **Tag Service**: Manages all operations related to tags associated with a post, including creating, editing, viewing, and deleting them.
+5. **Interaction Service**: Manages interactions with a post or a comment, including creating, viewing, deleting, and managing likes and comments. This service also provides a list of posts that a user has liked.
 
 ## Getting Started
 
