@@ -11,7 +11,7 @@
 	url = https://github.com/MkDierz/post.git
 [submodule "tags"]
 	path = tags
-	url = git@github.com:MkDierz/tags.git
+	url = https://github.com/MkDierz/tags.git
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/MkDierz/socialsphere-frontend.git
