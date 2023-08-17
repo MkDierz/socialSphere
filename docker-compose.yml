@@ -12,6 +12,12 @@ services:
     restart: always
     volumes:
       - frontend:/usr/share/nginx/html/
+    depends_on:
+      - frontend
+      - auth
+      - user
+      - tag
+      - post
 
   frontend:
     build: ./frontend
